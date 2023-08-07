@@ -1,0 +1,30 @@
+/* 
+    admin.css
+    v0.1
+*/
+
+/* Admin styles */
+
+.cm-settings-wrapper {
+    border-top: 1px solid #dfdfdf;
+    border-bottom: 1px solid #dfdfdf;
+    margin: 20px 0 10px 0;
+    padding: 10px 0;
+}
+.menu-item-depth-0 .cm-settings-wrapper {
+    display: block;
+}
+.menu-item-depth-1 .cm-settings-wrapper,
+.menu-item-depth-2 .cm-settings-wrapper,
+.menu-item-depth-3 .cm-settings-wrapper,
+.menu-item-depth-4 .cm-settings-wrapper,
+.menu-item-depth-5 .cm-settings-wrapper {
+    display: none !important;
+}
+.cm-extra-settings {
+    display: none;
+}
+.cm-extra-settings.active {
+    display: block;
+}
+

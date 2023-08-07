@@ -1,0 +1,55 @@
+/* 
+    frontend.css
+    v0.1
+*/
+
+.constellation {
+    position: relative;
+}
+.constellation > .menu-item {
+    position: static;
+}
+
+.constellation .menu-item:hover .dropdown-menu {
+    visibility: visible;
+}
+
+.constellation .dropdown-menu {
+    display: block;
+	visibility: hidden;
+    position: absolute;
+    left: auto;
+	top: 45px;
+	left: 0;
+    border: none;
+	z-index: 1000;
+	margin: 0;
+    padding: 3px 0 0 0;
+    background: #333;
+    color: #fff;
+}
+
+.constellation .dropdown.open .dropdown-menu {
+	visibility: visible;
+}
+
+.constellation .dropdown-menu > ul {
+    left: 0;
+    top: 0;
+    float: left;
+    padding: 0;
+    margin: 0;
+    width: 200px;
+    overflow: visible;
+    clip: auto;
+}
+
+.constellation .dropdown-menu.full-width {
+    display: table;
+    width: 100%;
+}
+
+.constellation-widget { 
+    display: table-cell;
+    padding: 5px;
+}

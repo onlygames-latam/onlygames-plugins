@@ -1,0 +1,19 @@
+{
+  "name": "onlygames-plugins",
+  "version": "1.0.0",
+  "description": "List of plugins consumed by onlygames-frontend",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/onlygames-latam/onlygames-plugins.git"
+  },
+  "author": "Diego Martin Marmol <diegomartinmarmol@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/onlygames-latam/onlygames-plugins/issues"
+  },
+  "homepage": "https://github.com/onlygames-latam/onlygames-plugins#readme"
+}
