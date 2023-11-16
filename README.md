@@ -20,6 +20,10 @@ Plugins que hace falta descargar del hosting compartido
 - [x] visual-composer@45.3.0
 - [x] wordpress-popular-posts@6.1.13
 
+### Own plugins
+
+- [x] custom-scripts@1.0
+
 ## How to create a custom Composer package registry
 
 Create a Custom Composer Package:
