@@ -3,14 +3,19 @@
 /**
  * Plugin Name: Custom Scripts Plugin
  * Description: Add custom scripts to the footer with the ability to enable/disable each script.
- * Version: 1.0
+ * Version: 1.1.0
  * Author: Diego Martin Marmol
  * Author URI: https://diegomarmol.com
  * Plugin URI: https://github.com/onlygames-latam/onlygames-plugins
  */
 
 // Include settings file
-include(plugin_dir_path(__FILE__) . 'settings.php');
+include(plugin_dir_path(__FILE__) . 'constants.php');
+include(plugin_dir_path(__FILE__) . 'script-form.php');
+include(plugin_dir_path(__FILE__) . 'pages/pages.php');
+
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
 // Register admin menu
 add_action('admin_menu', 'custom_scripts_menu');
@@ -26,28 +31,26 @@ function custom_scripts_menu()
     );
 }
 
-// Admin page content
+/**
+ * Render the view
+ */
 function custom_scripts_page()
 {
-?>
-    <div class="wrap">
-        <h2>Scripts Personalizados</h2>
-        <p>En esta pagina podras administrar los <code>&lt;scripts&gt;</code> que necesites</p>
-        <form method="post" action="options.php">
-            <?php settings_fields('custom-scripts-group'); ?>
-            <?php do_settings_sections('custom-scripts'); ?>
-            <?php submit_button(); ?>
-        </form>
-    </div>
-<?php
+    // print_r(CUSTOM_SCRIPTS_ENTITIES);
+    if (isset($_GET['edit_entity'])) {
+        // Display the form for editing a specific entity
+        // You'll implement this part later
+        custom_scripts_edit_entity_page();
+    } else {
+        // Display the list of entities
+        custom_scripts_list_entities();
+    }
 }
 
-
-// Display Scripts in the footer
 // Display Scripts in the footer
 function custom_scripts_output()
 {
-    $options = get_option('custom_scripts');
+    $options = get_option(WP_CUSTOM_SCRIPTS_OPTION_NAME);
 
     if ($options && is_array($options['script_code'])) {
         foreach ($options['script_code'] as $key => $script) {
@@ -59,4 +62,3 @@ function custom_scripts_output()
 }
 
 add_action('wp_footer', 'custom_scripts_output');
-?>
