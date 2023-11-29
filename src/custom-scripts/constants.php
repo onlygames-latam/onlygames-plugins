@@ -11,7 +11,7 @@ if (!defined('WP_CUSTOM_SCRIPTS_OPTION_NAME')) {
  * Unsure about this one
  */
 if (!defined('CUSTOM_SCRIPTS_SETTINGS_GROUP')) {
-    define('CUSTOM_SCRIPTS_SETTINGS_GROUP', 'custom-scripts-group');
+    define('CUSTOM_SCRIPTS_SETTINGS_GROUP', 'custom_scripts-group');
 }
 
 /**
@@ -19,9 +19,9 @@ if (!defined('CUSTOM_SCRIPTS_SETTINGS_GROUP')) {
  */
 if (!defined('CUSTOM_SCRIPTS_ENTITY_FIELD')) {
     define('CUSTOM_SCRIPTS_ENTITY_FIELD', array(
-        "id" => "id",
-        "label" => "label",
-        "code" => "code",
-        "enabled" => "enabled",
+        "id" => "script_id",
+        "label" => "script_label",
+        "code" => "script_code",
+        "enabled" => "script_enabled",
     ));
 }

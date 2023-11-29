@@ -26,7 +26,7 @@ function custom_scripts_menu()
         'Custom Scripts',
         'Custom Scripts',
         'manage_options',
-        'custom-scripts',
+        'custom_scripts',
         'custom_scripts_page'
     );
 }
@@ -51,11 +51,16 @@ function custom_scripts_page()
 function custom_scripts_output()
 {
     $options = get_option(WP_CUSTOM_SCRIPTS_OPTION_NAME);
+    $entities = $options['entities'];
+    $label_code = CUSTOM_SCRIPTS_ENTITY_FIELD['code'];
+    $label_enabled = CUSTOM_SCRIPTS_ENTITY_FIELD['enabled'];
 
-    if ($options && is_array($options['script_code'])) {
-        foreach ($options['script_code'] as $key => $script) {
-            if ($options['script_enabled'][$key]) {
-                echo '<script type="text/javascript">' . $script . '</script>';
+    if (is_array($entities)) {
+        foreach ($entities as $entity_id => $entity) {
+            $script = $entity[$label_code];
+            $isEnabled = $entity[$label_enabled];
+            if ($isEnabled) {
+                echo "<script id=\"" . WP_CUSTOM_SCRIPTS_OPTION_NAME . "_" . $entity_id . "\" type=\"text/javascript\">" . $script . "</script>";
             }
         }
     }

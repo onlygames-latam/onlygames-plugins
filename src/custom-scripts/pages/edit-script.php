@@ -11,7 +11,7 @@ function edit_entity_page($entity_index, $entity)
             echo '<input type="hidden" name="entity_index" value="' . esc_attr($entity_index) . '" />';
             settings_fields(CUSTOM_SCRIPTS_SETTINGS_GROUP);
             // Pass the entity to the form rendering function
-            do_settings_sections('custom-scripts', $entity);
+            do_settings_sections('custom_scripts', $entity);
             submit_button();
             ?>
         </form>
