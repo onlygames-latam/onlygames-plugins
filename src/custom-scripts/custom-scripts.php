@@ -3,7 +3,7 @@
 /**
  * Plugin Name: Custom Scripts Plugin
  * Description: Add custom scripts to the footer with the ability to enable/disable each script.
- * Version: 1.1.0
+ * Version: 1.0.0
  * Author: Diego Martin Marmol
  * Author URI: https://diegomarmol.com
  * Plugin URI: https://github.com/onlygames-latam/onlygames-plugins
@@ -11,6 +11,7 @@
 
 // Include settings file
 include(plugin_dir_path(__FILE__) . 'constants.php');
+include(plugin_dir_path(__FILE__) . 'functions.php');
 include(plugin_dir_path(__FILE__) . 'script-form.php');
 include(plugin_dir_path(__FILE__) . 'pages/pages.php');
 
@@ -26,28 +27,36 @@ function custom_scripts_menu()
         'Custom Scripts',
         'Custom Scripts',
         'manage_options',
-        'custom_scripts',
+        WP_CUSTOM_SCRIPTS_OPTION_NAME, // 'custom_scripts',
         'custom_scripts_page'
     );
 }
 
 /**
- * Render the view
+ * Callback
+ * 
+ * This function is called to render the UI
  */
 function custom_scripts_page()
 {
-    // print_r(CUSTOM_SCRIPTS_ENTITIES);
-    if (isset($_GET['edit_entity'])) {
-        // Display the form for editing a specific entity
-        // You'll implement this part later
+    if (is_edit_mode()) {
         custom_scripts_edit_entity_page();
-    } else {
-        // Display the list of entities
-        custom_scripts_list_entities();
+        return;
     }
+
+    if (is_create_mode()) {
+        custom_scripts_create_entity_page();
+        return;
+    }
+
+    // Display the list of entities
+    custom_scripts_list_entities();
 }
 
-// Display Scripts in the footer
+/** 
+ * Render each saved script at the page footer HTML
+ * This is the practical implementation of the plugins purpose
+ */
 function custom_scripts_output()
 {
     $options = get_option(WP_CUSTOM_SCRIPTS_OPTION_NAME);

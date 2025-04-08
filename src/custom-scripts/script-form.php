@@ -12,38 +12,38 @@ function custom_scripts_settings()
         'custom_scripts-section',
         'Custom Scripts Settings',
         'custom_scripts_section_callback',
-        'custom_scripts'
+        WP_CUSTOM_SCRIPTS_OPTION_NAME
     );
 
     add_settings_field(
-        'script_id',
+        CUSTOM_SCRIPTS_ENTITY_FIELD['id'],
         'ID',
         'script_id_callback',
-        'custom_scripts',
+        WP_CUSTOM_SCRIPTS_OPTION_NAME,
         'custom_scripts-section'
     );
 
     add_settings_field(
-        'script_label',
+        CUSTOM_SCRIPTS_ENTITY_FIELD['label'],
         'Nombre',
         'script_label_callback',
-        'custom_scripts',
+        WP_CUSTOM_SCRIPTS_OPTION_NAME,
         'custom_scripts-section'
     );
 
     add_settings_field(
-        'script_code',
+        CUSTOM_SCRIPTS_ENTITY_FIELD['code'],
         'Codigo',
         'script_code_callback',
-        'custom_scripts',
+        WP_CUSTOM_SCRIPTS_OPTION_NAME,
         'custom_scripts-section'
     );
 
     add_settings_field(
-        'script_enabled',
+        CUSTOM_SCRIPTS_ENTITY_FIELD['enabled'],
         'Habilitado',
         'script_enabled_callback',
-        'custom_scripts',
+        WP_CUSTOM_SCRIPTS_OPTION_NAME,
         'custom_scripts-section'
     );
 }
@@ -64,45 +64,29 @@ function get_entity_data($options)
     $label_enabled = CUSTOM_SCRIPTS_ENTITY_FIELD['enabled'];
 
     // Check if in edit mode or create mode
-    $edit_mode = isset($_GET['edit_entity']) && $_GET['edit_entity'] !== 'new';
-    // echo '<pre>';
-    // echo '<h1>Options</h1>';
-    // print_r($options);
-    // echo '</pre>';
-    // echo '<br />';
-    // die();
+    $edit_mode = is_edit_mode();
+   
+    $defaultFormValues = array(
+        // Generate a unique ID (GUID) for the new entity
+        $label_id => wp_generate_uuid4(),
+        $label_label => "",
+        $label_code => "",
+        $label_enabled => "",
+    );
+
     if ($edit_mode) {
         $entity_id = $_GET['edit_entity'];
-        $entity = isset($options['entities']) ? $options['entities'][$entity_id] : array(
-            $label_id => "",
-            $label_label => "",
-            $label_code => "",
-            $label_enabled => "",
-        );
+        $entity = isset($options['entities']) ? $options['entities'][$entity_id] : $defaultFormValues;
     } else {
-        $entity = array(
-            $label_id => "",
-            $label_label => "",
-            $label_code => "",
-            $label_enabled => "",
-        );
+        $entity = $defaultFormValues;
     }
 
 
     // Get the entity index if in edit mode
-    $id = $edit_mode ? intval($_GET['edit_entity']) : $entity[$label_id];
-
-    $label = $edit_mode && isset($entity[$id][$label_label])
-        ? esc_attr($entity[$id][$label_label])
-        : '';
-
-    $code = $edit_mode && isset($options['entities'][$id][$label_code])
-        ? esc_attr($options['entities'][$id][$label_code])
-        : '';
-
-    $enabled = $edit_mode && isset($options['entities'][$id][$label_enabled])
-        ? checked(1, $options['entities'][$id][$label_enabled], false)
-        : '';
+    $id = $entity[$label_id];
+    $label = esc_attr($entity[$label_label]);
+    $code = esc_attr($entity[$label_code]);
+    $enabled = checked(1, $entity[$label_enabled], false);
 
     // Get the entity data based on edit mode and entity index
     $entity_data = array(
@@ -118,8 +102,12 @@ function get_entity_data($options)
 
 function script_id_callback()
 {
-    // Generate a unique ID (GUID) for the new entity
-    $entity_id = wp_generate_uuid4();
+    $options = get_option(WP_CUSTOM_SCRIPTS_OPTION_NAME);
+    $entity_data = get_entity_data($options);
+    $field_name = CUSTOM_SCRIPTS_ENTITY_FIELD["id"];
+    $entity_name = $entity_data[$field_name];
+    $entity_id = $entity_name;
+    
     $field_id = CUSTOM_SCRIPTS_ENTITY_FIELD["id"];
     $entity_name = WP_CUSTOM_SCRIPTS_OPTION_NAME . "[entities][" . $field_id . "]";
 ?>
@@ -158,7 +146,8 @@ function script_enabled_callback()
     $entity_name = WP_CUSTOM_SCRIPTS_OPTION_NAME . "[entities][" . $field_name  . "]";
     $default_value = false; // Set your default value here
 
-    $checked = isset($entity_data[$field_name]) ? checked(1, $entity_data[$field_name], false) : checked(1, $default_value, false);
+    $entity = $entity_data[$field_name];
+    $checked = isset($entity) ? checked(1, $entity, false) : checked(1, $default_value, false);
 ?>
     <input type="checkbox" name="<?php echo $entity_name; ?>" value="1" <?php echo $checked; ?> />
 <?php
