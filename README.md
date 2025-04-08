@@ -8,21 +8,21 @@ Plugins que hace falta descargar del hosting compartido
 
 - [x] feedzy-rss-feeds-lite@4.2.7
 - [x] jetpack-por-wordpress.com@9.6
-- [x] simple-iframe@1.1.1
+- [x] simple-iframe@1.2.0 (resolved from wpackagist.org)
 - [ ] smash-balloon@6.0.5
-- [ ] wpbakery-page-builder@6.5.0
+- [x] wpbakery-page-builder@6.5.0 (resolved from github.com)
 - [x] yoast-seo@17.3
 
 ### Goodgame Theme plugins
 
-- [x] envato-market@2.0.10
+- [x] envato-market@2.0.12 (resolved from github.com)
 - [x] planetshine-goodgame-theme-extension@1.0.2
-- [x] visual-composer@45.3.0
-- [x] wordpress-popular-posts@6.1.13
+- [x] visual-composer@45.5.0 (resolved from github.com)
+- [x] wordpress-popular-posts@6.3.2 (resolved from github.com)
 
 ### Own plugins
 
-- [x] custom-scripts@1.0
+- [x] custom-scripts@1.0.1
 
 ## How to create a custom Composer package registry
 
