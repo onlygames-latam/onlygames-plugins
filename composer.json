@@ -1,6 +1,7 @@
 {
     "name": "onlygames-latam/onlygames-plugins",
     "description": "List of plugins consumed by onlygames frontend",
+    "version": "1.0.3",
     "type": "project",
     "license": "MIT",
     "autoload": {
