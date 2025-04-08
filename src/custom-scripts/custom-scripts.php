@@ -3,7 +3,7 @@
 /**
  * Plugin Name: Custom Scripts Plugin
  * Description: Add custom scripts to the footer with the ability to enable/disable each script.
- * Version: 1.0.0
+ * Version: 1.0.1
  * Author: Diego Martin Marmol
  * Author URI: https://diegomarmol.com
  * Plugin URI: https://github.com/onlygames-latam/onlygames-plugins
@@ -14,6 +14,7 @@ include(plugin_dir_path(__FILE__) . 'constants.php');
 include(plugin_dir_path(__FILE__) . 'functions.php');
 include(plugin_dir_path(__FILE__) . 'script-form.php');
 include(plugin_dir_path(__FILE__) . 'pages/pages.php');
+include(plugin_dir_path(__FILE__) . 'frontend.php');
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
@@ -43,12 +44,12 @@ function custom_scripts_page()
         custom_scripts_edit_entity_page();
         return;
     }
-
+    
     if (is_create_mode()) {
         custom_scripts_create_entity_page();
         return;
     }
-
+    
     // Display the list of entities
     custom_scripts_list_entities();
 }

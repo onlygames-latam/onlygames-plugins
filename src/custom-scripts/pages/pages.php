@@ -3,6 +3,7 @@ include(plugin_dir_path(__FILE__) . '../constants.php');
 include(plugin_dir_path(__FILE__) . 'create-script.php');
 include(plugin_dir_path(__FILE__) . 'edit-script.php');
 include(plugin_dir_path(__FILE__) . 'list-script.php');
+include(plugin_dir_path(__FILE__) . 'delete-script.php');
 
 function custom_scripts_edit_entity_page()
 {

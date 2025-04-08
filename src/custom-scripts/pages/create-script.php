@@ -32,7 +32,7 @@ function handle_create_entity()
     
     $entity = $post_data['entities'];
     $value_id = $entity[CUSTOM_SCRIPTS_ENTITY_FIELD['id']];
-    $value_label = $entity[CUSTOM_SCRIPTS_ENTITY_FIELD['label']];
+    $value_label = trim($entity[CUSTOM_SCRIPTS_ENTITY_FIELD['label']]);
     $value_code = $entity[CUSTOM_SCRIPTS_ENTITY_FIELD['code']];
     $value_enabled = isset($entity[CUSTOM_SCRIPTS_ENTITY_FIELD['enabled']]) ? $entity[CUSTOM_SCRIPTS_ENTITY_FIELD['enabled']] : 0;
     
