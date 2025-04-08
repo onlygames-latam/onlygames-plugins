@@ -1,6 +1,6 @@
 {
   "name": "onlygames-plugins",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "List of plugins consumed by onlygames-frontend",
   "main": "index.js",
   "scripts": {
