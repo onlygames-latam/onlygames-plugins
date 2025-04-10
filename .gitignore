@@ -1,3 +1,8 @@
 .DS_Store
 /vendor/
 /node_modules/
+# Exclude every plugin
+src/*
+# Inlcude exclusive plugins from this list
+!src/custom-scripts
+!src/planetshine-goodgame

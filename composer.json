@@ -1,8 +1,44 @@
 {
     "name": "onlygames-latam/onlygames-plugins",
     "description": "List of plugins consumed by onlygames frontend",
+    "version": "1.0.3",
     "type": "project",
     "license": "MIT",
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://wpackagist.org",
+            "only": [
+                "wpackagist-plugin/*",
+                "wpackagist-theme/*"
+            ]
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/envato/wp-envato-market"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/cabrerahector/wordpress-popular-posts"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/wordpress-premium/wpbakery-page-builder"
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "visualcomposer/builder",
+                "version": "45.5.0",
+                "type": "wordpress-plugin",
+                "source": {
+                    "url": "https://github.com/visualcomposer/builder",
+                    "type": "git",
+                    "reference": "master"
+                }
+            }
+        }
+    ],
     "autoload": {
         "psr-4": {
             "OnlygamesLatam\\OnlygamesPlugins\\": "src/"
@@ -14,5 +50,36 @@
             "email": "diego.marmol@dataart.com"
         }
     ],
-    "require": {}
+    "require": {
+        "wpackagist-plugin/akismet": "dev-trunk",
+        "wpackagist-plugin/attachments": "3.5.9",
+        "wpackagist-plugin/gtranslate": "3.0.3",
+        "wpackagist-plugin/regenerate-thumbnails": "3.1.5",
+        "wpackagist-plugin/google-site-kit": "1.104.0",
+        "wpackagist-plugin/wp-linkedin-auto-publish": "8.1",
+        "wpackagist-plugin/wp-modal-popup-with-cookie-integration": "2.4",
+        "wpackagist-plugin/simple-iframe": "1.2.0",
+        "wpackagist-plugin/feedzy-rss-feeds": "4.2.7",
+        "wpackagist-plugin/jetpack": "9.6",
+        "wpackagist-plugin/wordpress-seo": "18.0",
+        "envato/wp-envato-market": "2.0.12",
+        "visualcomposer/builder": "45.5.0",
+        "cabrerahector/wordpress-popular-posts": "6.3.2",
+        "wordpress-premium/wpbakery-page-builder": "v7.9"
+    },
+    "extra": {
+        "installer-paths": {
+            "src/{$name}/": [
+                "type:wordpress-plugin",
+                "type:vcs",
+                "type:package",
+                "type:composer"
+            ]
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "composer/installers": true
+        }
+    }
 }

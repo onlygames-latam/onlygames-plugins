@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prepare": "composer install"
+    "change-version": "node ./scripts/change-version.js",
+    "composer": "composer install",
+    "clearcache": "composer clearcache && rm ./composer.lock",
+    "prepare": "npm run composer"
   },
   "repository": {
     "type": "git",
