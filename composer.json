@@ -71,7 +71,9 @@
         "installer-paths": {
             "src/{$name}/": [
                 "type:wordpress-plugin",
-                "type:vcs"
+                "type:vcs",
+                "type:package",
+                "type:composer"
             ]
         }
     },
